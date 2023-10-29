@@ -1,0 +1,27 @@
+name: CI-frontend
+on:
+  push:
+    branches:
+      - main
+jobs:
+  firebase-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+
+      - uses: actions/setup-node@master
+        with:
+          node-version: "18.x"
+
+      - run: npm install
+        working-directory: "./frontend"
+
+      - run: npm run build:prod
+        working-directory: "./frontend"
+
+      - uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_PATH: "./frontend"
