@@ -1,0 +1,44 @@
+<form [formGroup]="signInForm" (ngSubmit)="onSignIn()">
+  <div class="fields-wrapper">
+    <div class="labeled-field">
+      <mat-label for="email">Email</mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="example@email.com"
+        />
+        <mat-error *ngIf="signInForm.controls['email'].hasError('email')"
+          >Email format is invalid</mat-error
+        >
+        <mat-error *ngIf="signInForm.controls['email'].hasError('required')"
+          >Email is required field</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="labeled-field">
+      <mat-label for="password">Password</mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="⁕⁕⁕⁕⁕⁕⁕⁕"
+        />
+        <mat-error *ngIf="signInForm.controls['password'].hasError('minLength')"
+          >Password format is invalid</mat-error
+        >
+        <mat-error *ngIf="signInForm.controls['password'].hasError('required')"
+          >Password is required field</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button class="dark" mat-button type="submit">Sign In</button>
+  </div>
+</form>

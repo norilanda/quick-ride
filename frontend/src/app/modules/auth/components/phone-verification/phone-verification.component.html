@@ -1,0 +1,21 @@
+<form [formGroup]="phoneVerificationForm" (ngSubmit)="onVerify()">
+  <div class="labeled-field">
+    <mat-label for="code">Enter your OTP code here</mat-label>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        id="code"
+        type="text"
+        formControlName="code"
+        placeholder=""
+      />
+      <mat-error
+        *ngIf="phoneVerificationForm.controls['code'].hasError('required')"
+        >Enter code</mat-error
+      >
+    </mat-form-field>
+    <div class="form-actions">
+      <button class="dark" mat-button type="submit">Verify</button>
+    </div>
+  </div>
+</form>

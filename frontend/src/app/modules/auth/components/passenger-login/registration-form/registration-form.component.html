@@ -1,0 +1,84 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+  <div class="fields-wrapper">
+    <div class="labeled-field">
+      <mat-label for="name">Name</mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          id="name"
+          type="text"
+          formControlName="name"
+          placeholder="Jack London"
+        />
+        <mat-error
+          *ngIf="registrationForm.controls['name'].hasError('required')"
+          >Name is required field</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="labeled-field">
+      <mat-label for="email">Email</mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          id="email"
+          type="email"
+          formControlName="email"
+          placeholder="example@email.com"
+        />
+        <mat-error *ngIf="registrationForm.controls['email'].hasError('email')"
+          >Email format is invalid</mat-error
+        >
+        <mat-error
+          *ngIf="registrationForm.controls['email'].hasError('required')"
+          >Email is required field</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="labeled-field">
+      <mat-label for="phone">Phone</mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          id="phone"
+          type="tel"
+          formControlName="phone"
+          placeholder="+380924439081"
+        />
+        <mat-error *ngIf="registrationForm.controls['phone'].hasError('phone')"
+          >Phone format is invalid</mat-error
+        >
+        <mat-error
+          *ngIf="registrationForm.controls['phone'].hasError('required')"
+          >Phone is required field</mat-error
+        >
+      </mat-form-field>
+    </div>
+
+    <div class="labeled-field">
+      <mat-label for="password">Password</mat-label>
+      <mat-form-field appearance="outline">
+        <input
+          matInput
+          id="password"
+          type="password"
+          formControlName="password"
+          placeholder="⁕⁕⁕⁕⁕⁕⁕⁕"
+        />
+        <mat-error
+          *ngIf="registrationForm.controls['password'].hasError('minLength')"
+          >Password format is invalid</mat-error
+        >
+        <mat-error
+          *ngIf="registrationForm.controls['password'].hasError('required')"
+          >Password is required field</mat-error
+        >
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="form-actions">
+    <button class="dark" mat-button type="submit">Sign Up</button>
+  </div>
+</form>

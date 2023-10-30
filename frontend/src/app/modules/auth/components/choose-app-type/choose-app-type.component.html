@@ -4,11 +4,15 @@
   <div class="app-types-container">
     <div class="app-type-option">
       <p>Continue as a passenger</p>
-      <button mat-button>User App</button>
+      <button mat-button (click)="goToPassengerLoginPage()" class="dark">
+        User App
+      </button>
     </div>
     <div class="app-type-option">
       <p>Continue as a driver</p>
-      <button mat-button>Driver App</button>
+      <button mat-button (click)="goToDriverLoginPage()" class="dark">
+        Driver App
+      </button>
     </div>
   </div>
 </div>

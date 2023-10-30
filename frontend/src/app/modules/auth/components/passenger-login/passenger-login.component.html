@@ -1,0 +1,14 @@
+<p class="app-type">User App</p>
+<mat-divider></mat-divider>
+<mat-tab-group animationDuration="0">
+  <mat-tab label="Sign In">
+    <div class="form-wrapper">
+      <app-sign-in-form [IsPassangerApp]="true"></app-sign-in-form>
+    </div>
+  </mat-tab>
+  <mat-tab label="Sign Up">
+    <div class="form-wrapper">
+      <app-passenger-registration-form></app-passenger-registration-form>
+    </div>
+  </mat-tab>
+</mat-tab-group>
