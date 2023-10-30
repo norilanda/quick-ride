@@ -1,0 +1,40 @@
+@import '../../../../styles/constants/colors'
+@import '../../../../styles/constants/screen-sizes'
+
+.choose-app-wrapper
+  display: flex
+  flex-direction: column
+  gap: 20px
+
+.choose-app-title
+  text-align: center
+  color: $rich-black
+  font-weight: 550
+  font-size: 25px
+
+.app-types-container
+  display: flex
+  justify-content: space-around
+  gap: 15px
+
+.app-type-option
+  display: flex
+  flex-direction: column
+  gap: 10px
+  font-size: 22px
+
+  p
+    text-align: center
+
+  .mat-mdc-button
+    background: $rich-black
+    color: $white
+    font-size: 20px
+    font-weight: 700
+    padding: 22px 8px
+    border-radius: 16px
+
+  @include max-media($sm)
+    font-size: 19px
+    .mat-mdc-button
+      font-size: 16px
