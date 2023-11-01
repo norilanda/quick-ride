@@ -1,0 +1,43 @@
+<form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+  <mat-stepper labelPosition="bottom" [linear]="false" #stepper>
+    <mat-step
+      [stepControl]="registrationForm.controls.personalInfo"
+      label="Personal"
+      [hasError]="
+        registrationForm.controls.personalInfo.invalid &&
+        registrationForm.controls.personalInfo.touched
+      "
+    >
+      <app-driver-personal-info-form
+        [personalInfoForm]="registrationForm.controls.personalInfo"
+      >
+      </app-driver-personal-info-form>
+      <div class="buttons-container">
+        <button mat-button matStepperNext type="button" class="dark">
+          Next
+        </button>
+      </div>
+    </mat-step>
+    <mat-step
+      [stepControl]="registrationForm.controls.carInfo"
+      label="Car"
+      [hasError]="
+        registrationForm.controls.carInfo.invalid &&
+        registrationForm.controls.carInfo.touched
+      "
+    >
+      <app-driver-car-info-form
+        [carInfoForm]="registrationForm.controls.carInfo"
+      >
+      </app-driver-car-info-form>
+      <div class="buttons-container">
+        <button mat-button matStepperPrevious type="button" class="light">
+          Back
+        </button>
+        <button mat-button matStepperNext type="submit" class="dark">
+          Sign Up
+        </button>
+      </div>
+    </mat-step>
+  </mat-stepper>
+</form>

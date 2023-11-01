@@ -1,0 +1,89 @@
+<div [formGroup]="carInfoForm" class="fields-wrapper">
+  <div class="labeled-field">
+    <mat-label for="brand">Car Brand</mat-label>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        id="brand"
+        type="text"
+        formControlName="brand"
+        placeholder="Toyota"
+      />
+      <mat-error *ngIf="carInfoForm.controls['brand'].hasError('required')"
+        >Car brand is required field
+      </mat-error>
+      <mat-error
+        *ngIf="carInfoForm.controls['numberPlate'].hasError('minLength')"
+        >Length should be 6 characters at least
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <div class="labeled-field">
+    <mat-label for="model">Model</mat-label>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        id="model"
+        type="text"
+        formControlName="model"
+        placeholder="Camry"
+      />
+      <mat-error *ngIf="carInfoForm.controls['model'].hasError('required')"
+        >Model is required field</mat-error
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="labeled-field">
+    <mat-label for="color">Color</mat-label>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        id="color"
+        type="text"
+        formControlName="color"
+        placeholder="Red"
+      />
+      <mat-error *ngIf="carInfoForm.controls['color'].hasError('required')"
+        >Color is required field</mat-error
+      >
+    </mat-form-field>
+  </div>
+
+  <div class="labeled-field">
+    <mat-label for="numberPlate">Number Plate</mat-label>
+    <mat-form-field appearance="outline">
+      <input
+        matInput
+        id="numberPlate"
+        type="text"
+        formControlName="numberPlate"
+        placeholder="XX4490YY"
+      />
+      <mat-error
+        *ngIf="carInfoForm.controls['numberPlate'].hasError('required')"
+        >Number Plate is required field
+      </mat-error>
+      <mat-error
+        *ngIf="carInfoForm.controls['numberPlate'].hasError('minlength')"
+        >Number Plate is required field
+      </mat-error>
+    </mat-form-field>
+
+    <div
+      *ngIf="
+        carInfoForm.controls['numberPlate'].invalid &&
+        carInfoForm.controls['numberPlate'].touched
+      "
+      class="error-messages-container"
+    >
+      <div *ngIf="carInfoForm.controls['numberPlate'].errors?.['required']">
+        Number Plate is required field
+      </div>
+      <div *ngIf="carInfoForm.controls['numberPlate'].errors?.['minlength']">
+        Length should be at least 6 characters
+      </div>
+    </div>
+  </div>
+</div>

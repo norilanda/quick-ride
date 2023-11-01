@@ -10,6 +10,10 @@ import { DriverLoginComponent } from './components/driver-login/driver-login.com
 import { SignInFormComponent } from './components/sign-in-form/sign-in-form.component';
 import { PassengerRegistrationFormComponent } from './components/passenger-login/registration-form/registration-form.component';
 import { PhoneVerificationComponent } from './components/phone-verification/phone-verification.component';
+import { DriverRegistrationFormComponent } from './components/driver-login/driver-registration-form/driver-registration-form.component';
+import { DriverPersonalInfoFormComponent } from './components/driver-login/driver-personal-info-form/driver-personal-info-form.component';
+import { DriverCarInfoFormComponent } from './components/driver-login/driver-car-info-form/driver-car-info-form.component';
+import { CustomMaterialModule } from '../shared/material/custom-material.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +24,15 @@ import { PhoneVerificationComponent } from './components/phone-verification/phon
     SignInFormComponent,
     PassengerRegistrationFormComponent,
     PhoneVerificationComponent,
+    DriverRegistrationFormComponent,
+    DriverPersonalInfoFormComponent,
+    DriverCarInfoFormComponent,
   ],
-  imports: [CommonModule, AuthRoutingModule, MaterialModule],
+  imports: [
+    CommonModule,
+    AuthRoutingModule,
+    MaterialModule,
+    CustomMaterialModule,
+  ],
 })
 export class AuthModule {}

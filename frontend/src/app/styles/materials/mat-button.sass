@@ -1,7 +1,17 @@
-.mat-mdc-button.dark
-  background: $rich-black
-  color: $white !important
+@mixin button-base()
   font-size: 18px
   font-weight: 700
   padding: 22px 8px
   border-radius: 20px
+  min-width: 80px
+
+
+.mat-mdc-button.dark
+  background: $rich-black
+  color: $white !important
+  @include button-base()
+
+.mat-mdc-button.light
+  background: $white
+  color: $rich-black !important
+  @include button-base()
