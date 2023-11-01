@@ -8,6 +8,8 @@
         type="text"
         formControlName="code"
         placeholder=""
+        mask="0 0 0 0 0 0"
+        [showMaskTyped]="true"
       />
       <mat-error
         *ngIf="phoneVerificationForm.controls['code'].hasError('required')"

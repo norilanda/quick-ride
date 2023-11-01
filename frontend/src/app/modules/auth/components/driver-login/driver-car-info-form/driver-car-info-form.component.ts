@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { createDriverCarInfoForm } from 'src/app/core/forms-models/driver-registration-form';
 
 @Component({
   selector: 'app-driver-car-info-form',
@@ -7,13 +7,5 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./driver-car-info-form.component.sass'],
 })
 export class DriverCarInfoFormComponent {
-  @Input() carInfoForm = new FormGroup({
-    brand: new FormControl('', [Validators.required, Validators.minLength(2)]),
-    model: new FormControl('', [Validators.required]),
-    color: new FormControl('', [Validators.required]),
-    numberPlate: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6),
-    ]),
-  });
+  @Input() carInfoForm = createDriverCarInfoForm();
 }

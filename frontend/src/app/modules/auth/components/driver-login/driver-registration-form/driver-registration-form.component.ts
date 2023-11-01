@@ -1,10 +1,14 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
+import {
+  createDriverCarInfoForm,
+  createDriverPersonalInfoForm,
+} from 'src/app/core/forms-models/driver-registration-form';
 import {
   nameWithOutSpacesRe,
   numberPlateRe,
   passwordRe,
-} from 'src/app/modules/shared/constants/validation-regex';
+} from 'src/app/core/constants/validation-regex';
 
 @Component({
   selector: 'app-driver-registration-form',
@@ -14,51 +18,8 @@ import {
 export class DriverRegistrationFormComponent {
   public registrationForm = new FormGroup(
     {
-      personalInfo: new FormGroup({
-        firstName: new FormControl('', [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(25),
-          Validators.pattern(nameWithOutSpacesRe),
-        ]),
-        lastName: new FormControl('', [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(25),
-          Validators.pattern(nameWithOutSpacesRe),
-        ]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        phone: new FormControl('', [Validators.required]),
-        password: new FormControl('', [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.maxLength(30),
-          Validators.pattern(passwordRe),
-        ]),
-      }),
-      carInfo: new FormGroup({
-        brand: new FormControl('', [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(30),
-        ]),
-        model: new FormControl('', [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(30),
-        ]),
-        color: new FormControl('', [
-          Validators.required,
-          Validators.minLength(2),
-          Validators.maxLength(20),
-        ]),
-        numberPlate: new FormControl('', [
-          Validators.required,
-          Validators.minLength(6),
-          Validators.maxLength(10),
-          Validators.pattern(numberPlateRe),
-        ]),
-      }),
+      personalInfo: createDriverPersonalInfoForm(),
+      carInfo: createDriverCarInfoForm(),
     },
     {
       updateOn: 'blur',

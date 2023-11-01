@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { passwordRe } from 'src/app/modules/shared/constants/validation-regex';
+import { createPassengerPersonalInfoForm } from 'src/app/core/forms-models/passenger-registration-form';
 
 @Component({
   selector: 'app-sign-in-form',
@@ -10,20 +9,7 @@ import { passwordRe } from 'src/app/modules/shared/constants/validation-regex';
 export class SignInFormComponent {
   @Input() IsPassangerApp = true;
 
-  public signInForm = new FormGroup(
-    {
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(8),
-        Validators.maxLength(30),
-        Validators.pattern(passwordRe),
-      ]),
-    },
-    {
-      updateOn: 'blur',
-    }
-  );
+  public signInForm = createPassengerPersonalInfoForm();
 
   public showPassword = false;
 

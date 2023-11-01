@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { phoneNumberMask } from 'src/app/modules/shared/constants/masks';
+import { createDriverPersonalInfoForm } from 'src/app/core/forms-models/driver-registration-form';
+import { phoneNumberMask } from 'src/app/core/constants/masks';
 
 @Component({
   selector: 'app-driver-personal-info-form',
@@ -8,13 +8,7 @@ import { phoneNumberMask } from 'src/app/modules/shared/constants/masks';
   styleUrls: ['./driver-personal-info-form.component.sass'],
 })
 export class DriverPersonalInfoFormComponent {
-  @Input() personalInfoForm = new FormGroup({
-    firstName: new FormControl('', [Validators.required]),
-    lastName: new FormControl('', [Validators.required]),
-    email: new FormControl('', [Validators.required]),
-    phone: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.required]),
-  });
+  @Input() personalInfoForm = createDriverPersonalInfoForm();
 
   public phoneMask = phoneNumberMask;
 
