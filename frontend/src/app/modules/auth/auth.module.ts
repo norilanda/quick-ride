@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { AuthRoutingModule } from './auth-routing.module';
 import { AuthPageComponent } from './components/auth-page/auth-page.component';
-import { MaterialModule } from '../shared/material/material.module';
 import { ChooseAppTypeComponent } from './components/choose-app-type/choose-app-type.component';
 import { PassengerLoginComponent } from './components/passenger-login/passenger-login.component';
 import { DriverLoginComponent } from './components/driver-login/driver-login.component';
@@ -14,6 +13,7 @@ import { DriverRegistrationFormComponent } from './components/driver-login/drive
 import { DriverPersonalInfoFormComponent } from './components/driver-login/driver-personal-info-form/driver-personal-info-form.component';
 import { DriverCarInfoFormComponent } from './components/driver-login/driver-car-info-form/driver-car-info-form.component';
 import { CustomMaterialModule } from '../shared/material/custom-material.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { CustomMaterialModule } from '../shared/material/custom-material.module'
   imports: [
     CommonModule,
     AuthRoutingModule,
-    MaterialModule,
+    SharedModule,
     CustomMaterialModule,
   ],
 })
