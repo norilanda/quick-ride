@@ -10,6 +10,8 @@ import { phoneNumberMask } from 'src/app/core/constants/masks';
 export class DriverPersonalInfoFormComponent {
     @Input() personalInfoForm = createDriverPersonalInfoForm();
 
+    @Input() verifiedPhone = false;
+
     public phoneMask = phoneNumberMask;
 
     public showPassword = false;

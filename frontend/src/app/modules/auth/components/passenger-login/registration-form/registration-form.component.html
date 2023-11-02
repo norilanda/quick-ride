@@ -1,114 +1,106 @@
-<form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
-  <div class="fields-wrapper">
-    <div class="labeled-field">
-      <mat-label for="name">Name</mat-label>
-      <mat-form-field appearance="outline">
-        <input
-          matInput
-          id="name"
-          type="text"
-          formControlName="name"
-          placeholder="Jack London"
-        />
-        <mat-error
-          *ngIf="registrationForm.controls['name'].hasError('required')"
-          >Name is required field
-        </mat-error>
-        <mat-error *ngIf="registrationForm.controls['name'].hasError('pattern')"
-          >Invalid format for name
-        </mat-error>
-        <mat-error
-          *ngIf="registrationForm.controls['name'].hasError('minlength')"
-          >Name length should be at least 2 characters
-        </mat-error>
-        <mat-error
-          *ngIf="registrationForm.controls['name'].hasError('maxlength')"
-          >Name length should not be more than 50 characters
-        </mat-error>
-      </mat-form-field>
-    </div>
+<ng-container *ngIf="!showPhoneVerificationPage">
+    <form [formGroup]="registrationForm" (ngSubmit)="onRegister()">
+        <div class="fields-wrapper">
+            <div class="labeled-field">
+                <mat-label for="name">Name</mat-label>
+                <mat-form-field appearance="outline">
+                    <input matInput id="name" type="text" formControlName="name" placeholder="Jack London" />
+                    <mat-error *ngIf="registrationForm.controls['name'].hasError('required')"
+                        >Name is required field
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.controls['name'].hasError('pattern')"
+                        >Invalid format for name
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.controls['name'].hasError('minlength')"
+                        >Name length should be at least 2 characters
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.controls['name'].hasError('maxlength')"
+                        >Name length should not be more than 50 characters
+                    </mat-error>
+                </mat-form-field>
+            </div>
 
-    <div class="labeled-field">
-      <mat-label for="email">Email</mat-label>
-      <mat-form-field appearance="outline">
-        <input
-          matInput
-          id="email"
-          type="email"
-          formControlName="email"
-          placeholder="example@email.com"
-        />
-        <mat-error *ngIf="registrationForm.controls['email'].hasError('email')"
-          >Email format is invalid</mat-error
-        >
-        <mat-error
-          *ngIf="registrationForm.controls['email'].hasError('required')"
-          >Email is required field</mat-error
-        >
-      </mat-form-field>
-    </div>
+            <div class="labeled-field">
+                <mat-label for="email">Email</mat-label>
+                <mat-form-field appearance="outline">
+                    <input matInput id="email" type="email" formControlName="email" placeholder="example@email.com" />
+                    <mat-error *ngIf="registrationForm.controls['email'].hasError('email')"
+                        >Email format is invalid</mat-error
+                    >
+                    <mat-error *ngIf="registrationForm.controls['email'].hasError('required')"
+                        >Email is required field</mat-error
+                    >
+                </mat-form-field>
+            </div>
 
-    <div class="labeled-field">
-      <mat-label for="phone">Phone</mat-label>
-      <mat-form-field appearance="outline">
-        <input
-          matInput
-          id="phone"
-          type="tel"
-          formControlName="phone"
-          [placeholder]="phoneMask"
-          [mask]="phoneMask"
-        />
-        <mat-error *ngIf="registrationForm.controls['phone'].hasError('mask')"
-          >Phone format is invalid</mat-error
-        >
-        <mat-error
-          *ngIf="registrationForm.controls['phone'].hasError('required')"
-          >Phone is required field</mat-error
-        >
-      </mat-form-field>
-    </div>
+            <div class="labeled-field">
+                <div class="phone-labels-container">
+                    <mat-label for="phone">Phone</mat-label>
+                    <mat-label for="phone" class="verified-mark" *ngIf="verifiedPhone">Verified</mat-label>
+                </div>
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        id="phone"
+                        type="tel"
+                        formControlName="phone"
+                        [placeholder]="phoneMask"
+                        [mask]="phoneMask" />
+                    <mat-error *ngIf="registrationForm.controls['phone'].hasError('mask')"
+                        >Phone format is invalid</mat-error
+                    >
+                    <mat-error *ngIf="registrationForm.controls['phone'].hasError('required')"
+                        >Phone is required field</mat-error
+                    >
+                </mat-form-field>
+            </div>
 
-    <div class="labeled-field">
-      <mat-label for="password">Password</mat-label>
-      <mat-form-field appearance="outline">
-        <input
-          matInput
-          id="password"
-          [type]="showPassword ? 'text' : 'password'"
-          formControlName="password"
-          placeholder="⁕⁕⁕⁕⁕⁕⁕⁕"
-        />
-        <button
-          mat-icon-button
-          matSuffix
-          type="button"
-          (click)="showPassword = !showPassword"
-        >
-          <mat-icon class="dark">{{
-            showPassword ? "visibility" : "visibility_off"
-          }}</mat-icon>
-        </button>
-        <mat-error
-          *ngIf="registrationForm.controls['password'].hasError('minlength')"
-          >Password length should be at least 8 characters
-        </mat-error>
-        <mat-error
-          *ngIf="registrationForm.controls['password'].hasError('maxlength')"
-          >Password length should not be more than 30 characters
-        </mat-error>
-        <mat-error
-          *ngIf="registrationForm.controls['password'].hasError('pattern')"
-          >Password format is invalid
-        </mat-error>
-        <mat-error
-          *ngIf="registrationForm.controls['password'].hasError('required')"
-          >Password is required field
-        </mat-error>
-      </mat-form-field>
+            <div class="labeled-field">
+                <mat-label for="password">Password</mat-label>
+                <mat-form-field appearance="outline">
+                    <input
+                        matInput
+                        id="password"
+                        [type]="showPassword ? 'text' : 'password'"
+                        formControlName="password"
+                        placeholder="⁕⁕⁕⁕⁕⁕⁕⁕" />
+                    <button mat-icon-button matSuffix type="button" (click)="showPassword = !showPassword">
+                        <mat-icon class="dark">{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="registrationForm.controls['password'].hasError('minlength')"
+                        >Password length should be at least 8 characters
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.controls['password'].hasError('maxlength')"
+                        >Password length should not be more than 30 characters
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.controls['password'].hasError('pattern')"
+                        >Password format is invalid
+                    </mat-error>
+                    <mat-error *ngIf="registrationForm.controls['password'].hasError('required')"
+                        >Password is required field
+                    </mat-error>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-actions">
+            <button
+                class="dark"
+                mat-button
+                type="button"
+                *ngIf="!verifiedPhone"
+                (click)="onVerifyPhone()"
+                [disabled]="!allowShowPhoneVerificationPage()">
+                Verify Phone
+            </button>
+            <button class="dark" mat-button type="submit" *ngIf="verifiedPhone">Sign Up</button>
+        </div>
+    </form>
+</ng-container>
+<ng-container *ngIf="showPhoneVerificationPage">
+    <div class="link-container">
+        <a href="" class="navigate-back-link" (click)="togglePhoneVerificationPage()">Go back</a>
     </div>
-  </div>
-  <div class="form-actions">
-    <button class="dark" mat-button type="submit">Sign Up</button>
-  </div>
-</form>
+    <app-phone-verification
+        (phoneVerifiedSuccessfully)="onPhoneVerifiedSuccessfully()"
+        [phoneNumber]="phoneControllValue!"></app-phone-verification>
+</ng-container>

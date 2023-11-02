@@ -1,137 +1,97 @@
 <div [formGroup]="personalInfoForm" class="fields-wrapper">
-  <div class="labeled-field">
-    <mat-label for="firstName">First Name</mat-label>
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        id="firstName"
-        type="text"
-        formControlName="firstName"
-        placeholder="Jack"
-      />
-      <mat-error
-        *ngIf="personalInfoForm.controls['firstName'].hasError('required')"
-        >First name is required field
-      </mat-error>
-      <mat-error
-        *ngIf="personalInfoForm.controls['firstName'].hasError('minlength')"
-        >First name should be at least 2 characters
-      </mat-error>
-      <mat-error
-        *ngIf="personalInfoForm.controls['firstName'].hasError('maxlength')"
-        >First name should not be more than 25 characters
-      </mat-error>
-      <mat-error
-        *ngIf="personalInfoForm.controls['firstName'].hasError('pattern')"
-        >First name format is invalid
-      </mat-error>
-    </mat-form-field>
-  </div>
+    <div class="labeled-field">
+        <mat-label for="firstName">First Name</mat-label>
+        <mat-form-field appearance="outline">
+            <input matInput id="firstName" type="text" formControlName="firstName" placeholder="Jack" />
+            <mat-error *ngIf="personalInfoForm.controls['firstName'].hasError('required')"
+                >First name is required field
+            </mat-error>
+            <mat-error *ngIf="personalInfoForm.controls['firstName'].hasError('minlength')"
+                >First name should be at least 2 characters
+            </mat-error>
+            <mat-error *ngIf="personalInfoForm.controls['firstName'].hasError('maxlength')"
+                >First name should not be more than 25 characters
+            </mat-error>
+            <mat-error *ngIf="personalInfoForm.controls['firstName'].hasError('pattern')"
+                >First name format is invalid
+            </mat-error>
+        </mat-form-field>
+    </div>
 
-  <div class="labeled-field">
-    <mat-label for="lastName">Last Name</mat-label>
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        id="lastName"
-        type="text"
-        formControlName="lastName"
-        placeholder="London"
-      />
-      <mat-error
-        *ngIf="personalInfoForm.controls['lastName'].hasError('required')"
-        >Last name is required field</mat-error
-      >
-      <mat-error
-        *ngIf="personalInfoForm.controls['lastName'].hasError('minlength')"
-        >Last name should be at least 2 characters</mat-error
-      >
-      <mat-error
-        *ngIf="personalInfoForm.controls['lastName'].hasError('maxlength')"
-        >Last name should not be more than 25 characters</mat-error
-      >
-      <mat-error
-        *ngIf="personalInfoForm.controls['lastName'].hasError('pattern')"
-        >Last name format is invalid</mat-error
-      >
-    </mat-form-field>
-  </div>
+    <div class="labeled-field">
+        <mat-label for="lastName">Last Name</mat-label>
+        <mat-form-field appearance="outline">
+            <input matInput id="lastName" type="text" formControlName="lastName" placeholder="London" />
+            <mat-error *ngIf="personalInfoForm.controls['lastName'].hasError('required')"
+                >Last name is required field</mat-error
+            >
+            <mat-error *ngIf="personalInfoForm.controls['lastName'].hasError('minlength')"
+                >Last name should be at least 2 characters</mat-error
+            >
+            <mat-error *ngIf="personalInfoForm.controls['lastName'].hasError('maxlength')"
+                >Last name should not be more than 25 characters</mat-error
+            >
+            <mat-error *ngIf="personalInfoForm.controls['lastName'].hasError('pattern')"
+                >Last name format is invalid</mat-error
+            >
+        </mat-form-field>
+    </div>
 
-  <div class="labeled-field">
-    <mat-label for="email">Email</mat-label>
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        id="email"
-        type="email"
-        formControlName="email"
-        placeholder="example@email.com"
-      />
-      <mat-error *ngIf="personalInfoForm.controls['email'].hasError('email')"
-        >Email format is invalid</mat-error
-      >
-      <mat-error *ngIf="personalInfoForm.controls['email'].hasError('required')"
-        >Email is required field</mat-error
-      >
-    </mat-form-field>
-  </div>
+    <div class="labeled-field">
+        <mat-label for="email">Email</mat-label>
+        <mat-form-field appearance="outline">
+            <input matInput id="email" type="email" formControlName="email" placeholder="example@email.com" />
+            <mat-error *ngIf="personalInfoForm.controls['email'].hasError('email')">Email format is invalid</mat-error>
+            <mat-error *ngIf="personalInfoForm.controls['email'].hasError('required')"
+                >Email is required field</mat-error
+            >
+        </mat-form-field>
+    </div>
 
-  <div class="labeled-field">
-    <mat-label for="phone">Phone</mat-label>
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        id="phone"
-        type="tel"
-        formControlName="phone"
-        [placeholder]="phoneMask"
-        [mask]="phoneMask"
-      />
-      <mat-error *ngIf="personalInfoForm.controls['phone'].hasError('mask')"
-        >Phone format is invalid</mat-error
-      >
-      <mat-error *ngIf="personalInfoForm.controls['phone'].hasError('required')"
-        >Phone is required field</mat-error
-      >
-    </mat-form-field>
-  </div>
+    <div class="labeled-field">
+        <div class="phone-labels-container">
+            <mat-label for="phone">Phone</mat-label>
+            <mat-label for="phone" class="verified-mark" *ngIf="verifiedPhone">Verified</mat-label>
+        </div>
+        <mat-form-field appearance="outline">
+            <input
+                matInput
+                id="phone"
+                type="tel"
+                formControlName="phone"
+                [placeholder]="phoneMask"
+                [mask]="phoneMask" />
+            <mat-error *ngIf="personalInfoForm.controls['phone'].hasError('mask')">Phone format is invalid</mat-error>
+            <mat-error *ngIf="personalInfoForm.controls['phone'].hasError('required')"
+                >Phone is required field</mat-error
+            >
+        </mat-form-field>
+    </div>
 
-  <div class="labeled-field">
-    <mat-label for="password">Password</mat-label>
-    <mat-form-field appearance="outline">
-      <input
-        matInput
-        id="password"
-        [type]="showPassword ? 'text' : 'password'"
-        formControlName="password"
-        placeholder="⁕⁕⁕⁕⁕⁕⁕⁕"
-      />
-      <button
-        mat-icon-button
-        matSuffix
-        type="button"
-        (click)="showPassword = !showPassword"
-      >
-        <mat-icon class="dark">{{
-          showPassword ? "visibility" : "visibility_off"
-        }}</mat-icon>
-      </button>
-      <mat-error
-        *ngIf="personalInfoForm.controls['password'].hasError('minlength')"
-        >Password length should be at least 8 characters
-      </mat-error>
-      <mat-error
-        *ngIf="personalInfoForm.controls['password'].hasError('maxlength')"
-        >Password length should not be more than 30 characters
-      </mat-error>
-      <mat-error
-        *ngIf="personalInfoForm.controls['password'].hasError('pattern')"
-        >Password format is invalid
-      </mat-error>
-      <mat-error
-        *ngIf="personalInfoForm.controls['password'].hasError('required')"
-        >Password is required field
-      </mat-error>
-    </mat-form-field>
-  </div>
+    <div class="labeled-field">
+        <mat-label for="password">Password</mat-label>
+        <mat-form-field appearance="outline">
+            <input
+                matInput
+                id="password"
+                [type]="showPassword ? 'text' : 'password'"
+                formControlName="password"
+                placeholder="⁕⁕⁕⁕⁕⁕⁕⁕" />
+            <button mat-icon-button matSuffix type="button" (click)="showPassword = !showPassword">
+                <mat-icon class="dark">{{ showPassword ? 'visibility' : 'visibility_off' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="personalInfoForm.controls['password'].hasError('minlength')"
+                >Password length should be at least 8 characters
+            </mat-error>
+            <mat-error *ngIf="personalInfoForm.controls['password'].hasError('maxlength')"
+                >Password length should not be more than 30 characters
+            </mat-error>
+            <mat-error *ngIf="personalInfoForm.controls['password'].hasError('pattern')"
+                >Password format is invalid
+            </mat-error>
+            <mat-error *ngIf="personalInfoForm.controls['password'].hasError('required')"
+                >Password is required field
+            </mat-error>
+        </mat-form-field>
+    </div>
 </div>

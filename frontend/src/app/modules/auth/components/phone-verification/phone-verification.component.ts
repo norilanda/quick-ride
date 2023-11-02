@@ -1,9 +1,8 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationResult, RecaptchaVerifier } from '@angular/fire/auth';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Observable, take } from 'rxjs';
-import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-phone-verification',
@@ -11,11 +10,9 @@ import { Router } from '@angular/router';
     styleUrls: ['./phone-verification.component.sass'],
 })
 export class PhoneVerificationComponent implements AfterViewInit {
-    @Input() phoneNumber = '+1 650-555-3433';
+    @Input() phoneNumber = '';
 
-    @Input() navigateUrlAfterVerification = '/auth/verify-phone';
-
-    @Input() navigateBackUrl = '/auth';
+    @Output() phoneVerifiedSuccessfully = new EventEmitter<void>();
 
     confirmationResult$: Observable<ConfirmationResult> | null = null;
 
@@ -31,10 +28,7 @@ export class PhoneVerificationComponent implements AfterViewInit {
 
     public recaptchaChecked = false;
 
-    constructor(
-        private authService: AuthService,
-        private router: Router,
-    ) {}
+    constructor(private authService: AuthService) {}
 
     ngAfterViewInit(): void {
         this.recaptchaVerifier = this.createRecaptchaVerifier();
@@ -67,7 +61,7 @@ export class PhoneVerificationComponent implements AfterViewInit {
             .subscribe({
                 next: (credentials) => {
                     console.log(credentials);
-                    this.router.navigate([this.navigateUrlAfterVerification]);
+                    this.phoneVerifiedSuccessfully.emit();
                 },
                 error: (error) => {
                     console.log(error);

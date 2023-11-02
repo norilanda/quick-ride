@@ -1,43 +1,30 @@
-<div class="link-container">
-  <a [href]="navigateBackUrl" class="navigate-back-link">Go back</a>
-</div>
 <ng-container *ngIf="!verificationNumberSent">
-  <div id="recaptcha-container"></div>
-  <div class="form-actions">
-    <button
-      class="dark"
-      mat-button
-      type="button"
-      (click)="sendVerificationCode()"
-      [disabled]="!recaptchaChecked"
-    >
-      Send me code
-    </button>
-  </div>
+    <div id="recaptcha-container"></div>
+    <div class="form-actions">
+        <button class="dark" mat-button type="button" (click)="sendVerificationCode()" [disabled]="!recaptchaChecked">
+            Send me code
+        </button>
+    </div>
 </ng-container>
 
 <ng-container *ngIf="verificationNumberSent">
-  <form [formGroup]="phoneVerificationForm" (ngSubmit)="onVerify()">
-    <div class="labeled-field">
-      <mat-label for="code">Enter your OTP code here</mat-label>
-      <mat-form-field appearance="outline">
-        <input
-          matInput
-          id="code"
-          type="text"
-          formControlName="code"
-          placeholder=""
-          mask="0 0 0 0 0 0"
-          [showMaskTyped]="true"
-        />
-        <mat-error
-          *ngIf="phoneVerificationForm.controls['code'].hasError('required')"
-          >Enter code</mat-error
-        >
-      </mat-form-field>
-      <div class="form-actions">
-        <button class="dark" mat-button type="submit">Verify</button>
-      </div>
-    </div>
-  </form>
+    <form [formGroup]="phoneVerificationForm" (ngSubmit)="onVerify()">
+        <div class="labeled-field">
+            <mat-label for="code">Enter your OTP code here</mat-label>
+            <mat-form-field appearance="outline">
+                <input
+                    matInput
+                    id="code"
+                    type="text"
+                    formControlName="code"
+                    placeholder=""
+                    mask="0 0 0 0 0 0"
+                    [showMaskTyped]="true" />
+                <mat-error *ngIf="phoneVerificationForm.controls['code'].hasError('required')">Enter code</mat-error>
+            </mat-form-field>
+            <div class="form-actions">
+                <button class="dark" mat-button type="submit">Verify</button>
+            </div>
+        </div>
+    </form>
 </ng-container>
