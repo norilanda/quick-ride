@@ -1,1 +1,1 @@
-export const phoneNumberMask = '+000 00-000-00-00';
+export const phoneNumberMask = '+009 00-000-00-00';

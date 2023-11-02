@@ -7,37 +7,37 @@ import { DriverLoginComponent } from './components/driver-login/driver-login.com
 import { PhoneVerificationComponent } from './components/phone-verification/phone-verification.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: AuthPageComponent,
-    children: [
-      {
+    {
         path: '',
-        redirectTo: 'app-type',
-        pathMatch: 'full',
-      },
-      {
-        path: 'app-type',
-        component: ChooseAppTypeComponent,
-      },
-      {
-        path: 'passenger',
-        component: PassengerLoginComponent,
-      },
-      {
-        path: 'driver',
-        component: DriverLoginComponent,
-      },
-      {
-        path: 'verify-phone',
-        component: PhoneVerificationComponent,
-      },
-    ],
-  },
+        component: AuthPageComponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'app-type',
+                pathMatch: 'full',
+            },
+            {
+                path: 'app-type',
+                component: ChooseAppTypeComponent,
+            },
+            {
+                path: 'passenger',
+                component: PassengerLoginComponent,
+            },
+            {
+                path: 'driver',
+                component: DriverLoginComponent,
+            },
+            {
+                path: 'verify-phone',
+                component: PhoneVerificationComponent,
+            },
+        ],
+    },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+    imports: [RouterModule.forChild(routes)],
+    exports: [RouterModule],
 })
 export class AuthRoutingModule {}

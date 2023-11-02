@@ -16,23 +16,18 @@ import { CustomMaterialModule } from '../shared/material/custom-material.module'
 import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  declarations: [
-    AuthPageComponent,
-    ChooseAppTypeComponent,
-    PassengerLoginComponent,
-    DriverLoginComponent,
-    SignInFormComponent,
-    PassengerRegistrationFormComponent,
-    PhoneVerificationComponent,
-    DriverRegistrationFormComponent,
-    DriverPersonalInfoFormComponent,
-    DriverCarInfoFormComponent,
-  ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    SharedModule,
-    CustomMaterialModule,
-  ],
+    declarations: [
+        AuthPageComponent,
+        ChooseAppTypeComponent,
+        PassengerLoginComponent,
+        DriverLoginComponent,
+        SignInFormComponent,
+        PassengerRegistrationFormComponent,
+        PhoneVerificationComponent,
+        DriverRegistrationFormComponent,
+        DriverPersonalInfoFormComponent,
+        DriverCarInfoFormComponent,
+    ],
+    imports: [CommonModule, AuthRoutingModule, SharedModule, CustomMaterialModule],
 })
 export class AuthModule {}

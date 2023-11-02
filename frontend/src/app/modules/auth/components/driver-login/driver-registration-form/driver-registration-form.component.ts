@@ -1,32 +1,27 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {
-  createDriverCarInfoForm,
-  createDriverPersonalInfoForm,
+    createDriverCarInfoForm,
+    createDriverPersonalInfoForm,
 } from 'src/app/core/forms-models/driver-registration-form';
-import {
-  nameWithOutSpacesRe,
-  numberPlateRe,
-  passwordRe,
-} from 'src/app/core/constants/validation-regex';
 
 @Component({
-  selector: 'app-driver-registration-form',
-  templateUrl: './driver-registration-form.component.html',
-  styleUrls: ['./driver-registration-form.component.sass'],
+    selector: 'app-driver-registration-form',
+    templateUrl: './driver-registration-form.component.html',
+    styleUrls: ['./driver-registration-form.component.sass'],
 })
 export class DriverRegistrationFormComponent {
-  public registrationForm = new FormGroup(
-    {
-      personalInfo: createDriverPersonalInfoForm(),
-      carInfo: createDriverCarInfoForm(),
-    },
-    {
-      updateOn: 'blur',
-    }
-  );
+    public registrationForm = new FormGroup(
+        {
+            personalInfo: createDriverPersonalInfoForm(),
+            carInfo: createDriverCarInfoForm(),
+        },
+        {
+            updateOn: 'blur',
+        },
+    );
 
-  onRegister() {
-    console.log(this.registrationForm);
-  }
+    onRegister() {
+        console.log(this.registrationForm);
+    }
 }

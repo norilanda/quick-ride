@@ -3,18 +3,17 @@ import { createPassengerPersonalInfoForm } from 'src/app/core/forms-models/passe
 import { phoneNumberMask } from 'src/app/core/constants/masks';
 
 @Component({
-  selector: 'app-passenger-registration-form',
-  templateUrl: './registration-form.component.html',
-  styleUrls: ['./registration-form.component.sass'],
+    selector: 'app-passenger-registration-form',
+    templateUrl: './registration-form.component.html',
+    styleUrls: ['./registration-form.component.sass'],
 })
 export class PassengerRegistrationFormComponent {
-  public registrationForm = createPassengerPersonalInfoForm();
+    public registrationForm = createPassengerPersonalInfoForm();
+    public phoneMask = phoneNumberMask;
 
-  public phoneMask = phoneNumberMask;
+    public showPassword = false;
 
-  public showPassword = false;
-
-  onRegister() {
-    console.log(this.registrationForm);
-  }
+    onRegister() {
+        console.log(this.registrationForm);
+    }
 }

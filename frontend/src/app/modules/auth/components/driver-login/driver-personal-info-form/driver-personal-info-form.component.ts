@@ -3,14 +3,14 @@ import { createDriverPersonalInfoForm } from 'src/app/core/forms-models/driver-r
 import { phoneNumberMask } from 'src/app/core/constants/masks';
 
 @Component({
-  selector: 'app-driver-personal-info-form',
-  templateUrl: './driver-personal-info-form.component.html',
-  styleUrls: ['./driver-personal-info-form.component.sass'],
+    selector: 'app-driver-personal-info-form',
+    templateUrl: './driver-personal-info-form.component.html',
+    styleUrls: ['./driver-personal-info-form.component.sass'],
 })
 export class DriverPersonalInfoFormComponent {
-  @Input() personalInfoForm = createDriverPersonalInfoForm();
+    @Input() personalInfoForm = createDriverPersonalInfoForm();
 
-  public phoneMask = phoneNumberMask;
+    public phoneMask = phoneNumberMask;
 
-  public showPassword = false;
+    public showPassword = false;
 }
