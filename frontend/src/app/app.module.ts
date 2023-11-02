@@ -7,6 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment.development';
+import { MaterialModule } from './modules/shared/material/material.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -16,6 +17,7 @@ import { environment } from 'src/environments/environment.development';
         BrowserAnimationsModule,
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
+        MaterialModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ConfirmationResult, RecaptchaVerifier } from '@angular/fire/auth';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { Observable, take } from 'rxjs';
+import { NotificationService } from 'src/app/core/services/notification.service';
 
 @Component({
     selector: 'app-phone-verification',
@@ -28,7 +29,10 @@ export class PhoneVerificationComponent implements AfterViewInit {
 
     public recaptchaChecked = false;
 
-    constructor(private authService: AuthService) {}
+    constructor(
+        private authService: AuthService,
+        private notificationService: NotificationService,
+    ) {}
 
     ngAfterViewInit(): void {
         this.recaptchaVerifier = this.createRecaptchaVerifier();
@@ -50,7 +54,7 @@ export class PhoneVerificationComponent implements AfterViewInit {
                 this.verificationNumberSent = true;
                 this.confirmationResult = confirmation;
             },
-            error: (error) => console.log(error),
+            error: (error) => this.notificationService.showErrorMessage(error),
         });
     }
 
@@ -64,7 +68,7 @@ export class PhoneVerificationComponent implements AfterViewInit {
                     this.phoneVerifiedSuccessfully.emit();
                 },
                 error: (error) => {
-                    console.log(error);
+                    this.notificationService.showErrorMessage(error);
                 },
             });
     }
