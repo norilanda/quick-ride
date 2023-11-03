@@ -31,7 +31,9 @@
                 <app-driver-car-info-form [carInfoForm]="registrationForm.controls.carInfo"> </app-driver-car-info-form>
                 <div class="buttons-container">
                     <button mat-button matStepperPrevious type="button" class="light">Back</button>
-                    <button mat-button matStepperNext type="submit" class="dark">Sign Up</button>
+                    <button mat-button matStepperNext type="submit" class="dark" [disabled]="registrationForm.invalid">
+                        Sign Up
+                    </button>
                 </div>
             </mat-step>
         </mat-stepper>

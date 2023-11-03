@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/core/services/auth.service';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { PhoneInputComponent } from 'src/app/core/base/phone-input-base';
@@ -5,6 +6,7 @@ import {
     createDriverCarInfoForm,
     createDriverPersonalInfoForm,
 } from 'src/app/core/forms-models/driver-registration-form';
+import { take } from 'rxjs';
 
 @Component({
     selector: 'app-driver-registration-form',
@@ -21,7 +23,15 @@ export class DriverRegistrationFormComponent extends PhoneInputComponent {
         return this.registrationForm.controls.personalInfo.controls.phone;
     }
 
-    constructor() {
+    protected get emailControllValue() {
+        return this.registrationForm.controls.personalInfo.controls.email.value;
+    }
+
+    protected get passwordControllValue() {
+        return this.registrationForm.controls.personalInfo.controls.password.value;
+    }
+
+    constructor(private authService: AuthService) {
         super();
 
         this.phoneControll.valueChanges.subscribe((newValue) => {
@@ -29,7 +39,19 @@ export class DriverRegistrationFormComponent extends PhoneInputComponent {
         });
     }
 
+    protected linkEmailToFirebase() {
+        this.authService
+            .linkEmailToCurrentUserFirebaseAccount(this.emailControllValue!, this.passwordControllValue!)
+            .pipe(take(1))
+            .subscribe(() => {
+                this.authService
+                    .signInWithEmailAndPassword(this.emailControllValue!, this.passwordControllValue!)
+                    .pipe(take(1))
+                    .subscribe();
+            });
+    }
+
     onRegister() {
-        console.log(this.registrationForm);
+        this.linkEmailToFirebase();
     }
 }

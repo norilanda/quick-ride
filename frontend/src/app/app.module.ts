@@ -8,6 +8,7 @@ import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { getAuth, provideAuth } from '@angular/fire/auth';
 import { environment } from 'src/environments/environment.development';
 import { MaterialModule } from './modules/shared/material/material.module';
+import { CoreModule } from 'src/app/core/core.module';
 
 @NgModule({
     declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { MaterialModule } from './modules/shared/material/material.module';
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
+        CoreModule,
         provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
         provideAuth(() => getAuth()),
         MaterialModule,

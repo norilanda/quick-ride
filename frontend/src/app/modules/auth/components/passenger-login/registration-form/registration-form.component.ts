@@ -3,6 +3,8 @@ import { createPassengerPersonalInfoForm } from 'src/app/core/forms-models/passe
 import { phoneNumberMask } from 'src/app/core/constants/masks';
 import { PhoneInputComponent } from 'src/app/core/base/phone-input-base';
 import { FormControl } from '@angular/forms';
+import { AuthService } from 'src/app/core/services/auth.service';
+import { take } from 'rxjs';
 
 @Component({
     selector: 'app-passenger-registration-form',
@@ -20,7 +22,15 @@ export class PassengerRegistrationFormComponent extends PhoneInputComponent {
         return this.registrationForm.controls.phone;
     }
 
-    constructor() {
+    protected get emailControllValue() {
+        return this.registrationForm.controls.email.value;
+    }
+
+    protected get passwordControllValue() {
+        return this.registrationForm.controls.password.value;
+    }
+
+    constructor(private authService: AuthService) {
         super();
 
         this.phoneControll.valueChanges.subscribe((newValue) => {
@@ -28,7 +38,19 @@ export class PassengerRegistrationFormComponent extends PhoneInputComponent {
         });
     }
 
+    protected linkEmailToFirebase() {
+        this.authService
+            .linkEmailToCurrentUserFirebaseAccount(this.emailControllValue!, this.passwordControllValue!)
+            .pipe(take(1))
+            .subscribe(() => {
+                this.authService
+                    .signInWithEmailAndPassword(this.emailControllValue!, this.passwordControllValue!)
+                    .pipe(take(1))
+                    .subscribe();
+            });
+    }
+
     onRegister() {
-        console.log(this.registrationForm);
+        this.linkEmailToFirebase();
     }
 }
